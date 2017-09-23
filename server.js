@@ -4,6 +4,6 @@ var config = require('./webpack.config')
 
 new WebpackDevServer(webpack(config), {
   historyApiFallback: true
-}).listen(3000, 'localhost', function (err, res) {
-  err ? console.log(err) : console.log("Listening at localhost:3000")
+}).listen(3000, '0.0.0.0', function (err, res) {
+  err ? console.log(err) : console.log("Listening at 0.0.0.0:3000")
 })

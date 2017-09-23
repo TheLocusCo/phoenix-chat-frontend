@@ -12,16 +12,41 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.js$/,
-        loaders: ['babel-loader'],
-        exclude: /node_modules/,
-        include: path.join(__dirname, 'app')
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+              loader: 'css-loader',
+              options: {
+                  sourceMap: true,
+                  modules: true,
+                  importLoaders: 1,
+                  localIdentName: '[path]___[name]__[local]___[hash:base64:5]'
+              }
+          }
+        ]
+      },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /(node_modules|bower_components)/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              "sourceMaps": "inline",
+              presets: [
+                "react",
+                "es2017"
+              ]
+            }
+          }
+        ]
       }
     ]
   },
   resolve: {
-    extensions: [ '*', '.js' ]
+    extensions: [ '*', '.js', '.jsx' ]
   }
 }
