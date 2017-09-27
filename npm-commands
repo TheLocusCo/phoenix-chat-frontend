@@ -1,0 +1,11 @@
+npm init
+npm install --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react babel-preset-stage-0
+npm install --save-dev webpack@1.x webpack-dev-server@1.x
+npm install --save react react-dom
+npm install --save history react-router
+npm install --save-dev style-loader css-loader postcss-loader postcss-cssnext
+npm install --save react-css-modules
+npm install --save-dev enzyme mocha expect react-addons-test-utils # testing
+npm install --save-dev babel-register # transpiling before passing to mocha for tests
+npm install --save-dev jsdom # faster fully rendered headless js tests
+npm install --save-dev nyc # test coverage reporting
