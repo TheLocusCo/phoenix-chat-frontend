@@ -9,3 +9,7 @@ npm install --save-dev enzyme mocha expect react-addons-test-utils # testing
 npm install --save-dev babel-register # transpiling before passing to mocha for tests
 npm install --save-dev jsdom # faster fully rendered headless js tests
 npm install --save-dev nyc # test coverage reporting
+npm install --save-dev whatwg-fetch # http call fetching
+
+# mix deps
+comeonin
