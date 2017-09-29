@@ -10,6 +10,8 @@ npm install --save-dev babel-register # transpiling before passing to mocha for 
 npm install --save-dev jsdom # faster fully rendered headless js tests
 npm install --save-dev nyc # test coverage reporting
 npm install --save-dev whatwg-fetch # http call fetching
+npm install --save redux react-redux react-router-redux
 
+# latest npm do not need to run --save
 # mix deps
 comeonin
