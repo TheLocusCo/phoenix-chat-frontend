@@ -20,8 +20,8 @@ describe('<Signup />', () => {
     const renderedComponent = mount(
       <Signup />
     )
-    //const spy = expect.spyOn(renderedComponent.instance(), 'submit')
-    //renderedComponent.find('button').simulate('click')
+    const spy = expect.spyOn(renderedComponent.instance(), 'submit')
+    renderedComponent.find('button').simulate('click')
     expect(
       renderedComponent.find('button')
     ).to.be.present();

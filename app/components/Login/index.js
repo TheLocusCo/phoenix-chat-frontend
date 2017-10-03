@@ -13,14 +13,11 @@ export class Login extends React.Component {
   }
 
   submit() {
-    console.log('hit?')
     const user = {
       email: document.getElementById("signup-email").value,
       password: document.getElementById("signup-password").value
     }
     this.props.dispatch(Actions.userLogin(user))
-    console.log(this.props.user)
-    console.log(user)
   }
 
   render() {
