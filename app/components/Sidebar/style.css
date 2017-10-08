@@ -8,3 +8,38 @@
   overflow-y: scroll;
   border-right: 1px solid #ccc;
 }
+
+.user {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  border-bottom-width: 80%;
+  min-height: 50px;
+  cursor: pointer;
+  background: white;
+  transition: background 0.1s ease;
+  box-shadow: 0px 4px 4px -2px rgba(0,0,0,0.2);
+}
+.user:hover {
+  background: #ddd;
+}
+
+.sidebar {
+  display: flex;
+  flex-flow: column nowrap;
+  background: url("https://s3.amazonaws.com/learnphoenix-static-assets/images/swirl_pattern.png");
+  overflow-y: scroll;
+  border-right: 1px solid rgb(213, 213, 213);
+  width: 30%;
+  position: relative;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  background: rgb(238, 238, 239);
+  border-bottom: 1px solid rgb(213, 213, 213);
+}
