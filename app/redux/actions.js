@@ -1,7 +1,37 @@
 const Actions = {}
+const API_HOST = "http://192.168.195.155:4000"
+
+Actions.organizationNew = function organizationNew(organization) {
+  return dispatch => fetch(`${API_HOST}/api/organizations`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ organization })
+  })
+  .then((res) => { return res.json() })
+  .then((res) => {
+    if (res.errors) {
+      return dispatch({
+        type: "ORGANIZATION_NEW_ERROR",
+        payload: {
+          errors: res.errors
+        }
+      })
+    }
+    dispatch({
+      type: "ORGANIZATION_NEW"
+    })
+    return dispatch(Actions.userAuth())
+  })
+  .catch((err) => {
+    console.warn(err)
+  })
+}
 
 Actions.userAuth = function userAuth() {
-  return dispatch => fetch("http://192.168.195.149:4000/auth/me", {
+  return dispatch => fetch(`${API_HOST}/auth/me`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -24,7 +54,7 @@ Actions.userAuth = function userAuth() {
 }
 
 Actions.userNew = function userNew(user) {
-  return dispatch => fetch("http://192.168.195.149:4000/api/users", {
+  return dispatch => fetch(`${API_HOST}/api/users`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -53,7 +83,7 @@ Actions.userNew = function userNew(user) {
 }
 
 Actions.userLogin = function userLogin(user) {
-  return dispatch => fetch("http://192.168.195.149:4000/auth/identity/callback", {
+  return dispatch => fetch(`${API_HOST}/auth/identity/callback`, {
     method: "POST",
     headers: {
       Accept: "application/json",

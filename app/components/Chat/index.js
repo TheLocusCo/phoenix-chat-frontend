@@ -2,6 +2,7 @@ import React from "react"
 import cssModules from "react-css-modules"
 import { Socket, Presence } from "phoenix"
 import { connect } from "react-redux"
+import { Link } from "react-router"
 import style from "./style.css"
 
 import { default as ChatRoom } from "../ChatRoom"
@@ -99,20 +100,68 @@ export class Chat extends React.Component {
     }
   }
 
+  renderHeader() {
+    if (!this.state.currentRoom) {
+      return (
+        <div className={style.header}>
+          <div />
+          <Link to="settings" className={style.settings}>
+            <img
+              alt="link to settings"
+              className={style.cog}
+              src="https://s3.amazonaws.com/learnphoenix-static-assets/icons/cog.png" />
+          </Link>
+        </div>
+      )
+    }
+
+    const avatar = {
+      height: "40px",
+      width: "40px",
+      background: "#ccc",
+      border: "1px solid #888",
+      borderRadius: "50%"
+    }
+
+    return (
+      <div className={style.header}>
+        <div className={style.identity}>
+          <div style={avatar} />
+          <div className={style.titleGroup}>
+            <h3 className={style.title}>
+              { this.state.currentRoom }
+            </h3>
+            <div className={style.lastActive}>
+              Last active: __ minutes ago
+            </div>
+          </div>
+        </div>
+        <Link to="settings" className={style.settings}>
+          <img
+            alt="link to settings"
+            className={style.cog}
+            src="https://s3.amazonaws.com/learnphoenix-static-assets/icons/cog.png" />
+        </Link>
+      </div>
+    )
+  }
+
   render() {
     return (
-      <div className={style.container}>
-        <div className={style.row}>
+      <div>
         <Sidebar
           presences={this.state.presences}
-          lobbyList={this.state.lobbyList}
-          onRoomClick={this.changeChatroom} />
-        <ChatRoom
-          input={this.state.input}
-          handleChange={this.handleChange}
-          handleMessageSubmit={this.handleMessageSubmit}
-          currentRoom={this.state.currentRoom}
-          messages={this.state.messages} />
+          onRoomClick={this.changeChatroom}
+          lobbyList={this.state.lobbyList} />
+        <div className={style.chatWrapper}>
+          { this.renderHeader() }
+          <div
+            className={style.chatContainer}
+            ref={ref => { this.chatContainer = ref }}>
+            { this.renderEmpty() }
+            { this.renderMessages() }
+          </div>
+          { this.renderInput() }
         </div>
         { this.props.children }
       </div>

@@ -16,23 +16,41 @@ export class Signup extends React.Component {
       username: "",
       email: "",
       password: "",
-      passwordVerify: ""
+      passwordVerify: "",
+      website: ""
     }
     this.submit = this.submit.bind(this)
   }
 
   submit() {
-    const user = {
-      username: this.state.username,
-      email: this.state.email,
-      password: this.state.password
+    if (this.state.website) {
+      const userWithOrg = {
+        username: this.state.username,
+        email: this.state.email,
+        password: this.state.password,
+        owned_organization: {
+          website: this.state.website
+        }
+      }
+      this.props.dispatch(Actions.userNew(userWithOrg))
+    } else {
+      const user = {
+        username: this.state.username,
+        email: this.state.email,
+        password: this.state.password,
+      }
+      this.props.dispatch(Actions.userNew(user))
     }
-    this.props.dispatch(Actions.userNew(user))
   }
 
   validateEmail() {
     if (this.state.email.length < 1) return {}
     return /@/.test(this.state.email) ? validInput : invalidInput
+  }
+
+  validateEmail() {
+    if (this.state.website.length < 1) return {}
+    return /^([a-zA-z]+\.)*[a-zA-Z]+$/.test(this.state.website) ? validInput : invalidInput
   }
 
   validatePassword() {
@@ -82,6 +100,15 @@ export class Signup extends React.Component {
               placeholder="Verify Password"
               className={style.input}
               type="password" />
+          </div>
+          <div className={style.inputGroup}>
+            <input
+              onChange={e => { this.handleChange("website", e) }}
+              style={this.validateWebsite()}
+              value={this.state.website}
+              placeholder="Website (optional)"
+              className={style.input}
+              type="text" />
           </div>
           <Button
             onClick={this.submit}
