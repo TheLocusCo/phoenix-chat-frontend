@@ -2,11 +2,11 @@ import React from "react"
 import cssModules from "react-css-modules"
 import { connect } from "react-redux"
 import style from "./style.css"
-import Actions from "../../redux/actions"
+import { userAuth } from "../../redux/actions"
 
 export class App extends React.Component {
   componentDidMount() {
-    this.props.dispatch(Actions.userAuth())
+    this.props.dispatch(userAuth())
   }
 
   render() {

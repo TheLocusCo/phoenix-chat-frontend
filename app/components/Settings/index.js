@@ -3,7 +3,7 @@ import cssModules from "react-css-modules"
 import { connect } from "react-redux"
 import { Link } from "react-router"
 import style from "./style.css"
-import Actions from "../../redux/actions"
+import { organizationNew } from "../../redux/actions"
 
 import Button from "../Button"
 
