@@ -11,6 +11,7 @@ const listBy = (id, { metas: [first, ...rest] }) => {
 }
 
 const renderList = (props) => {
+  console.log("sidebar?")
   const activeList = Presence.list(props.presences, (id, _metas) => id)
 
   const lobbyList = props.lobbyList.map(({ id, name, avatar }) => {

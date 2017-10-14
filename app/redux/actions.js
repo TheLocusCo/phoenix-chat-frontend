@@ -1,5 +1,5 @@
 const Actions = {}
-const API_HOST = "http://192.168.195.155:4000"
+const API_HOST = "http://192.168.195.158:4000"
 
 Actions.organizationNew = function organizationNew(organization) {
   return dispatch => fetch(`${API_HOST}/api/organizations`, {
@@ -41,6 +41,7 @@ Actions.userAuth = function userAuth() {
   })
   .then((res) => { return res.json() })
   .then((res) => {
+    console.log('userAuth' + JSON.stringify(res.data))
     dispatch({
       type: "USER_AUTH",
       payload: {
@@ -96,7 +97,7 @@ Actions.userLogin = function userLogin(user) {
   })
   .then((res) => { return res.json() })
   .then((res) => {
-    console.log('????' + res.data)
+    console.log('????' + JSON.stringify(res.data))
     /* If success, log the user in */
     localStorage.token = res.data.token
     /* Then send action to reducer */

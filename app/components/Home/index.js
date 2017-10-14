@@ -22,6 +22,7 @@ export class Home extends React.Component {
   }
 
   renderToggleContent() {
+    console.log("????" + JSON.stringify(this.state))
     switch (this.state.formState) {
       case "login":
         return (
@@ -47,7 +48,7 @@ export class Home extends React.Component {
     if (this.props.user.email) {
       return (
         <Chat>
-          <PhoenixChat />
+          <PhoenixChat token="QWrCJUyz8e" />
         </Chat>
       )
     }
@@ -57,16 +58,16 @@ export class Home extends React.Component {
         { this.state.formState === "signup" ? <Signup /> : null }
         { this.state.formState === "login" ? <Login /> : null }
         { this.renderToggleContent() }
+        <PhoenixChat token="QWrCJUyz8e" />
         <img
           role="presentation"
           className={style.circles}
           src="https://s3.amazonaws.com/learnphoenix-static-assets/images/circles-full.png" />
-        <PhoenixChat />
       </div>
     )
   }
 }
-
+//token="NlkfVrAM9/"
 const mapStateToProps = state => ({
   user: state.user
 })

@@ -48,7 +48,7 @@ export class Signup extends React.Component {
     return /@/.test(this.state.email) ? validInput : invalidInput
   }
 
-  validateEmail() {
+  validateWebsite() {
     if (this.state.website.length < 1) return {}
     return /^([a-zA-z]+\.)*[a-zA-Z]+$/.test(this.state.website) ? validInput : invalidInput
   }
@@ -121,3 +121,9 @@ export class Signup extends React.Component {
     )
   }
 }
+
+const mapStateToProps = state => ({
+  user: state.user
+})
+
+export default connect(mapStateToProps)(cssModules(Signup, style))
